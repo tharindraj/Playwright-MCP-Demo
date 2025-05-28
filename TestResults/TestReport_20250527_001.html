@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Execution Report - May 27, 2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .summary-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+            text-align: center;
+        }
+        .pass {
+            color: #4CAF50;
+        }
+        .fail {
+            color: #F44336;
+        }
+        .skip {
+            color: #FF9800;
+        }
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .chart-container {
+            width: 48%;
+            min-width: 300px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f6f6f6;
+        }
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-pass {
+            background-color: #E8F5E9;
+            color: #4CAF50;
+        }
+        .status-fail {
+            background-color: #FFEBEE;
+            color: #F44336;
+        }
+        .status-skip {
+            background-color: #FFF3E0;
+            color: #FF9800;
+        }
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .test-details {
+            margin-top: 20px;
+        }
+        .test-case {
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .test-case h3 {
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .step.failed {
+            background-color: #FFEBEE;
+        }
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .active, .collapsible:hover {
+            background-color: #e1e1e1;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            border-radius: 0 0 4px 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Test Execution Report</h1>
+            <p>Date: May 27, 2025 | Sequence: 001</p>
+            <p>Application: Advantage Online Shopping</p>
+            <p>Browser: Chrome | Priority: Medium</p>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <h3>Total Tests</h3>
+                <h2>3</h2>
+            </div>
+            <div class="summary-card">
+                <h3>Passed</h3>
+                <h2 class="pass">2</h2>
+            </div>
+            <div class="summary-card">
+                <h3>Failed</h3>
+                <h2 class="fail">1</h2>
+            </div>
+            <div class="summary-card">
+                <h3>Success Rate</h3>
+                <h2>66.67%</h2>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart-container">
+                <h2>Test Execution Summary</h2>
+                <canvas id="summaryChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Test Results Trend</h2>
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <h2>Test Execution Details</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Suite</th>
+                    <th>Test Case</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Execution Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>UserRegistration</td>
+                    <td>TC 002 - Validate registration form errors</td>
+                    <td>Medium</td>
+                    <td><span class="status-badge status-pass">Pass</span></td>
+                    <td>00:01:35</td>
+                </tr>
+                <tr>
+                    <td>UserLogin</td>
+                    <td>TC 001 - Validate user login</td>
+                    <td>Medium</td>
+                    <td><span class="status-badge status-pass">Pass</span></td>
+                    <td>00:00:45</td>
+                </tr>
+                <tr>
+                    <td>SearchProducts</td>
+                    <td>TC 001 - Check Tablet price</td>
+                    <td>Medium</td>
+                    <td><span class="status-badge status-fail">Fail</span></td>
+                    <td>00:01:10</td>
+                </tr>
+                <tr>
+                    <td>SearchProducts</td>
+                    <td>TC 002 - Check Speakers price</td>
+                    <td>Medium</td>
+                    <td><span class="status-badge status-pass">Pass</span></td>
+                    <td>00:00:58</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="test-details">
+            <button type="button" class="collapsible">User Registration Test Details</button>
+            <div class="content">
+                <div class="test-case">
+                    <h3>TC 002 - Validate registration form errors</h3>
+                    <div class="step">
+                        <p><strong>Step 1:</strong> Navigate to registration page</p>
+                        <p><strong>Result:</strong> Successfully navigated to registration page</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 2:</strong> Enter username exceeding 15 characters</p>
+                        <p><strong>Result:</strong> Error message displayed: "Use maximum 15 character"</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 3:</strong> Enter invalid email format</p>
+                        <p><strong>Result:</strong> Error message displayed: "Your email address isn't formatted correctly"</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 4:</strong> Enter various invalid password inputs</p>
+                        <p><strong>Result:</strong> Appropriate error messages displayed for each invalid case</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="collapsible">User Login Test Details</button>
+            <div class="content">
+                <div class="test-case">
+                    <h3>TC 001 - Validate user login</h3>
+                    <div class="step">
+                        <p><strong>Step 1:</strong> Navigate to login page</p>
+                        <p><strong>Result:</strong> Successfully navigated to login page</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 2:</strong> Enter valid username: user20250527</p>
+                        <p><strong>Result:</strong> Username entered successfully</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 3:</strong> Enter valid password: Test12345</p>
+                        <p><strong>Result:</strong> Password entered successfully</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 4:</strong> Click on Sign In button</p>
+                        <p><strong>Result:</strong> Successfully logged in, username visible in header</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="collapsible">Search Products Test Details</button>
+            <div class="content">
+                <div class="test-case">
+                    <h3>TC 001 - Check Tablet price</h3>
+                    <div class="step">
+                        <p><strong>Step 1:</strong> Navigate to Tablets category</p>
+                        <p><strong>Result:</strong> Successfully navigated to Tablets category</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 2:</strong> Find HP ELITEPAD 1000 G2 TABLET</p>
+                        <p><strong>Result:</strong> Product found successfully</p>
+                    </div>
+                    <div class="step failed">
+                        <p><strong>Step 3:</strong> Verify price is $1,010.00</p>
+                        <p><strong>Result:</strong> FAILED - Expected price: $1,010.00, Actual price: $1,009.00</p>
+                        <p><strong>Screenshot:</strong></p>
+                        <div>Price verification failed - screenshot placeholder</div>
+                    </div>
+                </div>
+
+                <div class="test-case">
+                    <h3>TC 002 - Check Speakers price</h3>
+                    <div class="step">
+                        <p><strong>Step 1:</strong> Navigate to Speakers category</p>
+                        <p><strong>Result:</strong> Successfully navigated to Speakers category</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 2:</strong> Find HP ROAR MINI WIRELESS SPEAKER</p>
+                        <p><strong>Result:</strong> Product found successfully</p>
+                    </div>
+                    <div class="step">
+                        <p><strong>Step 3:</strong> Verify price is $44.99</p>
+                        <p><strong>Result:</strong> Expected price: $44.99, Actual price: $44.99 - PASS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Summary Chart
+        const summaryCtx = document.getElementById('summaryChart').getContext('2d');
+        const summaryChart = new Chart(summaryCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Pass', 'Fail', 'Skip'],
+                datasets: [{
+                    label: 'Test Results',
+                    data: [3, 1, 0],
+                    backgroundColor: [
+                        '#4CAF50',
+                        '#F44336',
+                        '#FF9800'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Test Execution Results'
+                    }
+                }
+            }
+        });
+
+        // Trend Chart
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        const trendChart = new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['May 25', 'May 26', 'May 27'],
+                datasets: [
+                    {
+                        label: 'Pass',
+                        data: [2, 3, 3],
+                        borderColor: '#4CAF50',
+                        tension: 0.1,
+                        fill: false
+                    },
+                    {
+                        label: 'Fail',
+                        data: [1, 2, 1],
+                        borderColor: '#F44336',
+                        tension: 0.1,
+                        fill: false
+                    },
+                    {
+                        label: 'Skip',
+                        data: [0, 1, 0],
+                        borderColor: '#FF9800',
+                        tension: 0.1,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Test Results Trend'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+
+        // Collapsible sections
+        const coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
