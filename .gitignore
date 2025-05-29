@@ -1,0 +1,18 @@
+# Node modules
+node_modules/
+
+# Log files
+*.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test reports (if you want to exclude them)
+# TestResults/
